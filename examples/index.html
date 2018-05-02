@@ -1,0 +1,194 @@
+<html>
+<head>
+	<style type="text/css">
+		.message,
+		.test-html {
+			margin:  5px;
+			padding: 5px;
+		}
+
+		.message {
+			border: 1px solid #FF0000;
+		}
+
+		.message.error {
+			background: #FFCCCC;
+		}
+
+		.test-html {
+			border: 1px solid #00DD00;
+		}
+
+		.example {
+			margin: 10px 0;
+			border: 2px solid #0000FF;
+			padding: 5px;
+		}
+
+		p span {
+			color: #999999;
+		}
+
+		p.first:before{
+			content: '1st';
+			color: #ff6600;
+		}
+		p.second:before{
+			content: '2nd';
+			color: #ff9955;
+		}
+
+		.test-html div,
+		.test-html p {
+			margin:  2px 10px;
+			padding: 5px;
+			border:  1px solid #339900;
+		}
+
+		.clearfix:after {
+			visibility: hidden;
+			display:    block;
+			font-size:  0;
+			content:    " ";
+			clear:      both;
+			height:     0;
+		}
+
+		.clearfix {
+			display: inline-block;
+		}
+
+		/* start commented backslash hack \*/
+		* html .clearfix {
+			height: 1%;
+		}
+
+		.clearfix {
+			display: block;
+		}
+
+		/* close commented backslash hack */
+	</style>
+</head>
+<body>
+<script type="text/javascript" src="../js/jquery.1.10.2.js"></script>
+<script type="text/javascript" src="../js/isafter.jquery.js"></script>
+<script type="text/javascript">
+	function prepareMessage(parentSelector)
+	{
+		var $parent = $(parentSelector);
+		var $first = $parent.find("p.first");
+		var $second = $parent.find("p.second");
+
+		var test1 = $second.isAfter($first);
+		var test2 = ($second.prevAll($first).length !== 0);
+
+		if(test1 !== test2)
+		{
+			$parent.find(".message")
+				.addClass("error");
+		}
+		$parent.find(".message")
+			.append("<i>p.first</i> after <i>p.second</i>? ")
+			.append("using <i>isAfter</i>: ")
+			.append("<b>" + (test1? "yes":"no") + "</b>")
+			.append(", using <i>prevAll().length</i>: ")
+			.append("<b>" + (test2? "yes":"no") + "</b>");
+	}
+
+	$(document)
+		.ready(
+			function (){
+				prepareMessage("#Example1");
+				prepareMessage("#Example2");
+				prepareMessage("#Example3");
+				prepareMessage("#Example4");
+			}
+		);
+</script>
+<div class="example" id="Example1">
+	<h1>Both Elements in Same Level</h1>
+	<div class="test-html clearfix">
+		<p class="first clearfix">
+			<span>
+			[<i> div ></i> <b>p.first</b>]
+			</span>
+			I'm first
+		</p>
+		<p class="second clearfix">
+			<span>
+				[<i> div ></i> <b>p.second</b>]
+			</span>
+			I'm second
+		</p>
+	</div>
+	<div class="message clearfix"></div>
+</div>
+<div class="example" id="Example2">
+	<h1>Elements in Different HTML Depths (First is Deeper)</h1>
+	<div class="test-html clearfix">
+		<div>
+			<p class="first clearfix">
+				<span>
+					[<i> div ></i> <b>div > p.first</b>]
+				</span>
+				I'm first
+			</p>
+		</div>
+		<p class="second clearfix">
+			<span>
+				[<i> div ></i> <b>p.second</b>]
+			</span>
+			I'm second
+		</p>
+	</div>
+	<div class="message clearfix"></div>
+</div>
+<div class="example" id="Example3">
+	<h1>Elements in Different HTML Depths (Second is Deeper)</h1>
+	<div class="test-html clearfix">
+		<p class="first clearfix">
+			<span>
+				[<i> div ></i> <b>p.first</b>]
+			</span>
+			I'm first
+		</p>
+		<div>
+			<p class="second clearfix">
+			<span>
+				[<i> div ></i> <b>div > p.second</b>]
+			</span>
+				I'm second
+			</p>
+		</div>
+	</div>
+	<div class="message clearfix"></div>
+</div>
+<div class="example" id="Example4">
+	<h1>Elements in Same HTML Depth With Different Parents</h1>
+	<div class="test-html clearfix">
+		<div>
+			<div>
+				<p class="first clearfix">
+					<span>
+						[<i> div ></i> <b>div > div > p.first</b>]
+					</span>
+					I'm first
+				</p>
+			</div>
+		</div>
+		<div>
+			<div>
+				<p class="second clearfix">
+					<span>
+						[<i> div ></i> <b>div > div > p.second</b>]
+					</span>
+					I'm second
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="message clearfix"></div>
+</div>
+</body>
+</html>
