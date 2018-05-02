@@ -32,7 +32,7 @@ This plugin on the other hand checks the HTML tree of given elements, finds a co
 ## Dependencies
 * jQuery (tested and developed with v 1.10.2)
 
-## HowT
+## HowTo
 Download the package and extract it. the Copy the `isafter.query.js` *(and `jquery` if you don't already have jquery library installed)* and put it in your `js` scripts directory!
 
 ## Usage
@@ -81,4 +81,4 @@ Add script tags to `jQuery` and `isafter.jquery.js` to your HTML page:
 There is an example file in the package, accessible under `/examples/index.html`.
 
 # Licence
-You are free to use this plugin in any application you like. I would appreciate it if a link to the source was included in your app, but well, if you don't want to, I cannot force you to do so.
+You are free to use this plugin in any application you like. I would appreciate it if a link to the source was included in your app, but well, if you don't want to, I will not force you to do so.
