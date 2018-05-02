@@ -3,7 +3,7 @@ this small jquery plugin helps you to find which element comes first in the whol
 
 
 ## Why This Plugin?
-There are some other solutions like [this one](https://stackoverflow.com/questions/7208624/check-if-element-is-before-or-after-another-element-in-jquery) which is prevAll() and nextAll() functions provided by jquery. The **problem is** that this functions work properly only if the 2 elements belong to the same parent:
+There are some other solutions like [this one](https://stackoverflow.com/questions/7208624/check-if-element-is-before-or-after-another-element-in-jquery) which uses prevAll() and nextAll() functions provided by jquery. The **problem is** that this functions work properly only if the 2 elements belong to the same parent:
 ```html
 <!-- prevAll() works fine with:-->
 <div class="test1">
